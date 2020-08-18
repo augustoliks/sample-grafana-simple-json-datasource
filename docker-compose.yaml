@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,simpod-json-datasource,grafana-simple-json-datasource
+    ports:
+      - 3000:3000
+    network_mode: host
+
+  ws:
+    container_name: ws
+    build:
+      context: ./ws
+    network_mode: host
+    ports:
+      - 8000:8000
